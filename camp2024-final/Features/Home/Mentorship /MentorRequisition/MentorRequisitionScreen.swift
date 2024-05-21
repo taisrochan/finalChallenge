@@ -16,65 +16,80 @@ struct MentorRequisitionScreen: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading, spacing: 20) {
-                Text("Escolha o seu mentor na área de \(userArea)")
-                    .padding()
-                    .font(Font.system(size: 24, weight: .semibold))
-                
-                if !viewModel.mentors.isEmpty {
-                    HStack {
-                        Picker("Mentor", selection: $viewModel.selectedMentor) {
-                            ForEach(viewModel.mentors, id: \.self) { mentor in
-                                Text(mentor.name).tag(mentor)
-                            }
-                        }
-                        .pickerStyle(MenuPickerStyle())
+        ZStack {
+            NavigationView {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text("Escolha o seu mentor na área de \(userArea)")
                         .padding()
-                        
-                        .frame(maxWidth: .infinity)
-                    }
-                    .padding()
-                    .background(Color(UIColor.systemGray6))
-                    .cornerRadius(10)
-                    .frame(height: 36)
+                        .font(Font.system(size: 24, weight: .semibold))
                     
-                } else {
-                    HStack {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle())
+                    if !viewModel.mentors.isEmpty {
+                        HStack {
+                            Picker("Mentor", selection: $viewModel.selectedMentor) {
+                                ForEach(viewModel.mentors, id: \.self.name) { mentor in
+                                    Text(mentor.name)
+                                }
+                            }
+                            .pickerStyle(.menu)
+                            .frame(height: 40)
                             .padding()
+                            .frame(maxWidth: .infinity)
+                        }
+                        .background(Color(UIColor.systemGray6))
+                        .cornerRadius(10)
+                        
+                    } else {
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                                .padding()
+                            Spacer()
+                        }
                     }
-                    .frame(alignment: .center)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        viewModel.sendRequest()
+                    }) {
+                        Text("Enviar Pedido")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(viewModel.selectedMentor == "" ? Color.gray : Color.green)
+                            .cornerRadius(20)
+                            .padding(.horizontal)
+                    }
+                    .disabled(viewModel.selectedMentor == "")
+                    .padding(.bottom)
                 }
-                
-                Spacer()
-                
-                Button(action: {
-                    viewModel.sendRequest()
-                }) {
-                    Text("Enviar Pedido")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.ioasysGreen)
-                        .cornerRadius(20)
-                        .padding(.horizontal)
-                }
-                .disabled(viewModel.selectedMentor == nil)
-                .padding(.bottom)
+                .padding()
             }
-            .padding()
-            .alert(isPresented: $viewModel.showAlert) {
-                switch viewModel.alertType {
-                case .mentorsLoadFailure:
-                    return Alert(title: Text("Erro"), message: Text("Falha ao carregar mentores"), dismissButton: .default(Text("OK")))
-                case .sendRequestFailure:
-                    return Alert(title: Text("Erro"), message: Text("Falha ao enviar pedido"), dismissButton: .default(Text("OK")))
-                case .requestSended:
-                    return Alert(title: Text("Sucesso"), message: Text("Pedido enviado com sucesso"), dismissButton: .default(Text("OK")))
-                }
+            
+            if viewModel.isLoading {
+                // Overlay de carregamento
+                Color.black.opacity(0.4)
+                    .edgesIgnoringSafeArea(.all)
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    .scaleEffect(1.5, anchor: .center)
+            }
+        }
+        .alert(isPresented: $viewModel.showAlert) {
+            switch viewModel.alertType {
+            case .mentorsLoadFailure:
+                return Alert(title: Text("Erro"), message: Text("Falha ao carregar mentores"), dismissButton: .default(Text("OK")))
+            case .sendRequestFailure:
+                return Alert(title: Text("Erro"), message: Text("Falha ao enviar pedido"), dismissButton: .default(Text("OK")))
+            case .requestSended:
+                return Alert(
+                    title: Text("Sucesso!"),
+                    message: Text("Seu pedido foi enviado. Aguarde até o mentor responde-lo"),
+                    dismissButton: .default(Text("Ok")) {
+                        presentationMode.wrappedValue.dismiss()
+                    })
             }
         }
     }
@@ -85,3 +100,4 @@ struct MentorSelectionView_Previews: PreviewProvider {
         MentorRequisitionScreen()
     }
 }
+

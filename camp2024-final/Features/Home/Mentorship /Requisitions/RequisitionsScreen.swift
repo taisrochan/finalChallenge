@@ -7,65 +7,82 @@
 
 import SwiftUI
 
-struct RequisitionScreen: View {
-    let notifications = [
-        Notification(date: "Hoje", content: "Você tem uma nova mensagem."),
-        Notification(date: "Hoje", content: "Você tem um novo convite."),
-        Notification(date: "Ontem", content: "Seu pedido foi aprovado."),
-        Notification(date: "Ontem", content: "Você tem uma nova tarefa."),
-    ]
+struct RequisitionView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject var viewModel: RequisitionsViewModel
+    @State private var selectedRequest: MentorRequestModel?
     
-    var body: some View {
-        if notifications.isEmpty {
-            Text("Você não possui notificações")
-                .font(.headline)
-                .foregroundColor(.gray)
-                .padding()
-        } else {
-            List {
-//                            ForEach(notifications.grouped(by: \.date)) { section in
-//                                Section(header: Text(section.key)) {
-//                                    ForEach(section.value) { notification in
-//                                        Text(notification.content)
-                                    }
-                                }
-                            }
-                        }
-                
-
-struct RequisitionExemple: View {
     var body: some View {
         NavigationView {
-            RequisitionScreen()
-                .navigationBarTitle("Notificações")
+            ZStack {
+                if viewModel.isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .scaleEffect(1.5, anchor: .center)
+                } else {
+                    
+                    if viewModel.requests.isEmpty {
+                        Text("Nenhuma requisição encontrada")
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .multilineTextAlignment(.center)
+                    } else {
+                        List(viewModel.requests, id: \.date) { request in
+                            if request.status == MentoringStatus.requested.rawValue {
+                                Button(action: {
+                                    selectedRequest = request
+                                }) {
+                                    RequisitionRowView(request: request)
+                                }
+                            } else {
+                                RequisitionRowView(request: request)
+                            }
+                        }
+                    }
+                }
+            }
+            .alert(isPresented: $viewModel.showAlert) {
+                return Alert(
+                    title: Text("Oops..."),
+                    message: Text("Não foi possível carregar as solicitações. Tente novamente mais tarde."),
+                    dismissButton: .default(Text("Ok")) {
+                        presentationMode.wrappedValue.dismiss()
+                    })
+            }
+            .onAppear {
+                viewModel.loadRequests()
+            }
+            .actionSheet(item: $selectedRequest) { request in
+                ActionSheet(
+                    title: Text("Deseja aceitar essa solicitação?"),
+                    buttons: [
+                        .default(Text("Aceitar")) {
+                            viewModel.acceptRequest(request)
+                        },
+                        .destructive(Text("Rejeitar")) {
+                            viewModel.rejectRequest(request)
+                        },
+                        .cancel(Text("Cancelar"))
+                    ]
+                )
+            }
         }
+        .navigationBarTitle("Solicitações", displayMode: .inline)
+        
     }
-}
-
-struct RequisitionScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        RequisitionScreen()
-    }
-}
-
-// Model for Notification
-struct Notification: Identifiable, Comparable, Hashable {
-    let id = UUID()
-    let date: String
-    let content: String
     
-    static func < (lhs: Notification, rhs: Notification) -> Bool {
-           lhs.date < rhs.date
-       }
-   }
-
-
-// Extension to group notifications by date
-extension Array where Element: Comparable {
-    func grouped<T: Hashable & Comparable>(by keyPath: KeyPath<Element, T>) -> [(key: T, value: [Element])] {
-        Dictionary(grouping: self, by: { $0[keyPath: keyPath] })
-            .map { ($0, $1) }
-            .sorted { $0.0 < $1.0 }
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter
     }
 }
-
+//
+//struct RequisitionScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RequisitionView(viewModel: RequisitionsViewModel())
+//    }
+//}

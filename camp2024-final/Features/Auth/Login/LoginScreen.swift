@@ -101,7 +101,6 @@ struct LoginView: View {
                     RegisterView(userId: "\(userId)")
                 }
             }
-            
         }
         .onChange(of: viewModel.openNextScreen) {
             if viewModel.isLoading {

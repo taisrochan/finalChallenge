@@ -54,8 +54,10 @@ struct RegisterView: View {
                         
                         Picker("Selecione a área", selection: $viewModel.selectedArea) {
                             Text("Selecione a área")
+                                .foregroundColor(.black) 
                             ForEach(CompanyAreas.allCases, id: \.self) { area in
                                 Text(area.rawValue).tag(area.rawValue)
+                                   
                             }
                         }
                         .pickerStyle(MenuPickerStyle())

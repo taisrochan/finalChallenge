@@ -23,14 +23,12 @@ struct MentorshipHomeScreen: View {
                         
                         Spacer()
                         
-                        Toggle("", isOn: $viewModel.wantToBeAMentorStatus)
-                            .disabled(viewModel.isToggleDisabled)
-                            .labelsHidden()
-                            .frame(width: 50)
-                            .scaleEffect(0.7)
-                            .onChange(of: viewModel.wantToBeAMentorStatus) { oldValue, value in
-                                viewModel.changeMentoringStatus(wantToBeAmentor: value)
-                            }
+                        if viewModel.isToggleDisabled {
+                            createToggle(isDisable: true)
+                        } else {
+                            createToggle(isDisable: false)
+                        }
+                        
                     }
                     
                     Divider()
@@ -46,16 +44,15 @@ struct MentorshipHomeScreen: View {
                     
                     Divider()
                     
-                    Button(action: {
-                        // Ação para o segundo botão
-                    }) {
-                        Text("Solicitações")
-                            .foregroundColor(.black)
-                            .padding(.vertical, 10)
-                            .padding(.horizontal, 20)
-                            .background(.clear)
-                            .cornerRadius(10)
-                    }
+                    NavigationLink(
+                        destination: RequisitionView(viewModel: RequisitionsViewModel())) {
+                            Text("Solicitações")
+                                .foregroundColor(.black)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 20)
+                                .background(.clear)
+                                .cornerRadius(10)
+                        }
                     
                     Divider()
                     
@@ -88,12 +85,25 @@ struct MentorshipHomeScreen: View {
                             viewModel.confirmMentoringStatusChange(wantToBeAmentor: false)
                         },
                         secondaryButton: .cancel(Text("Cancelar")) {
-                            viewModel.wantToBeAMentorStatus = true
+                            viewModel.didPressCancel()
                         }
                     )
                 }
             }
         }
+    }
+    
+    func createToggle(isDisable: Bool) -> some View {
+        return Toggle("", isOn: $viewModel.wantToBeAMentorStatus)
+            .disabled(isDisable)
+            .labelsHidden()
+            .frame(width: 50)
+            .scaleEffect(0.7)
+            .onChange(of: viewModel.wantToBeAMentorStatus) { oldValue, value in
+                if viewModel.canPostChanging {
+                    viewModel.changeMentoringStatus(wantToBeAmentor: value)
+                }
+            }
     }
 }
 struct MentorshipHomeScreen_Previews: PreviewProvider {

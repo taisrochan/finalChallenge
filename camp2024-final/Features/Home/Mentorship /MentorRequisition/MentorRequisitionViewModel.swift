@@ -10,10 +10,11 @@ import Foundation
 
 class MentorRequisitionViewModel: ObservableObject {
     @Published var mentors: [User] = []
+    @Published var selectedMentor: String = ""
     @Published var showAlert = false
+    @Published var isLoading = false
     
     var alertType: AlertType = .mentorsLoadFailure
-    var selectedMentor: User?
     
     enum AlertType {
         case mentorsLoadFailure
@@ -53,6 +54,22 @@ class MentorRequisitionViewModel: ObservableObject {
     }
     
     func sendRequest() {
-       
+        guard let myUser = UserSessionManager.shared.loadUser(),
+              let mentor = mentors.first(where: {$0.name == selectedMentor}) else {
+            return
+        }
+        showAlert = false
+        isLoading = true
+        
+        service.addRequest(fromUser: myUser, toUser: mentor) { [weak self] didSucced in
+            guard let self = self else { return }
+            self.isLoading = false
+            if didSucced {
+                self.alertType = .requestSended
+            } else {
+                self.alertType = .sendRequestFailure
+            }
+            self.showAlert = true
+        }
     }
 }

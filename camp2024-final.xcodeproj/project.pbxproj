@@ -37,6 +37,11 @@
 		8FB948A92BFD199500D3552D /* MentorsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948A82BFD199500D3552D /* MentorsManager.swift */; };
 		8FB948AB2BFD1CE500D3552D /* MentorRequisitionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948AA2BFD1CE500D3552D /* MentorRequisitionViewModel.swift */; };
 		8FB948AD2BFD1D0400D3552D /* MentorRequisitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948AC2BFD1D0400D3552D /* MentorRequisitionService.swift */; };
+		8FB948AF2BFD482E00D3552D /* MentorsRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948AE2BFD482E00D3552D /* MentorsRequestManager.swift */; };
+		8FB948B12BFD497300D3552D /* MentoringStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948B02BFD497300D3552D /* MentoringStatus.swift */; };
+		8FB948B32BFD516F00D3552D /* RequisitionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948B22BFD516F00D3552D /* RequisitionsViewModel.swift */; };
+		8FB948B52BFD51F800D3552D /* RequisitionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948B42BFD51F800D3552D /* RequisitionsService.swift */; };
+		8FB948B82BFD565000D3552D /* RequisitionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948B72BFD565000D3552D /* RequisitionRowView.swift */; };
 		8FC75FF22BF6ABEA00163E8C /* MentorRequisitionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC75FF12BF6ABEA00163E8C /* MentorRequisitionScreen.swift */; };
 		8FC75FF42BF6BCAE00163E8C /* RequisitionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC75FF32BF6BCAE00163E8C /* RequisitionsScreen.swift */; };
 		8FD563B52BF685BF00EDD761 /* MentorshipHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD563B42BF685BF00EDD761 /* MentorshipHomeScreen.swift */; };
@@ -77,6 +82,11 @@
 		8FB948A82BFD199500D3552D /* MentorsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorsManager.swift; sourceTree = "<group>"; };
 		8FB948AA2BFD1CE500D3552D /* MentorRequisitionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorRequisitionViewModel.swift; sourceTree = "<group>"; };
 		8FB948AC2BFD1D0400D3552D /* MentorRequisitionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorRequisitionService.swift; sourceTree = "<group>"; };
+		8FB948AE2BFD482E00D3552D /* MentorsRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorsRequestManager.swift; sourceTree = "<group>"; };
+		8FB948B02BFD497300D3552D /* MentoringStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoringStatus.swift; sourceTree = "<group>"; };
+		8FB948B22BFD516F00D3552D /* RequisitionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequisitionsViewModel.swift; sourceTree = "<group>"; };
+		8FB948B42BFD51F800D3552D /* RequisitionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequisitionsService.swift; sourceTree = "<group>"; };
+		8FB948B72BFD565000D3552D /* RequisitionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequisitionRowView.swift; sourceTree = "<group>"; };
 		8FC75FF12BF6ABEA00163E8C /* MentorRequisitionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorRequisitionScreen.swift; sourceTree = "<group>"; };
 		8FC75FF32BF6BCAE00163E8C /* RequisitionsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequisitionsScreen.swift; sourceTree = "<group>"; };
 		8FD563B42BF685BF00EDD761 /* MentorshipHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorshipHomeScreen.swift; sourceTree = "<group>"; };
@@ -159,6 +169,7 @@
 				8F8DEA8E2BFC1D9F00D05527 /* PowerUpStatus.swift */,
 				8FB9488E2BFCD39400D3552D /* User.swift */,
 				8FB948922BFCDF6900D3552D /* CompanyAreas.swift */,
+				8FB948B02BFD497300D3552D /* MentoringStatus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -309,7 +320,10 @@
 		8F9CDBC22BF40F9D00C3112C /* Requisitions */ = {
 			isa = PBXGroup;
 			children = (
+				8FB948B62BFD564100D3552D /* View */,
 				8FC75FF32BF6BCAE00163E8C /* RequisitionsScreen.swift */,
+				8FB948B22BFD516F00D3552D /* RequisitionsViewModel.swift */,
+				8FB948B42BFD51F800D3552D /* RequisitionsService.swift */,
 			);
 			path = Requisitions;
 			sourceTree = "<group>";
@@ -344,8 +358,17 @@
 			children = (
 				8FB9489F2BFD084800D3552D /* UserSessionManager.swift */,
 				8FB948A82BFD199500D3552D /* MentorsManager.swift */,
+				8FB948AE2BFD482E00D3552D /* MentorsRequestManager.swift */,
 			);
 			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		8FB948B62BFD564100D3552D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8FB948B72BFD565000D3552D /* RequisitionRowView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +452,8 @@
 				8F8DEA7F2BFBE64D00D05527 /* AddPowerUpViewModel .swift in Sources */,
 				8FB948AD2BFD1D0400D3552D /* MentorRequisitionService.swift in Sources */,
 				8FD563B72BF6870C00EDD761 /* ProfileScreen.swift in Sources */,
+				8FB948B82BFD565000D3552D /* RequisitionRowView.swift in Sources */,
+				8FB948AF2BFD482E00D3552D /* MentorsRequestManager.swift in Sources */,
 				8FC75FF22BF6ABEA00163E8C /* MentorRequisitionScreen.swift in Sources */,
 				8FB948A52BFD14B600D3552D /* MentorshipHomeService.swift in Sources */,
 				8F8DEA8B2BFC1C6C00D05527 /* PowerUpListContent.swift in Sources */,
@@ -440,10 +465,13 @@
 				8FB948A92BFD199500D3552D /* MentorsManager.swift in Sources */,
 				8F8DEA812BFBE68300D05527 /* AddPowerUpService.swift in Sources */,
 				8FC75FF42BF6BCAE00163E8C /* RequisitionsScreen.swift in Sources */,
+				8FB948B12BFD497300D3552D /* MentoringStatus.swift in Sources */,
+				8FB948B52BFD51F800D3552D /* RequisitionsService.swift in Sources */,
 				8FB948A72BFD14CE00D3552D /* MentorshipHomeViewModel.swift in Sources */,
 				8FDCA5CE2BF6E123003EC149 /* AddPowerUpScreen.swift in Sources */,
 				8F8DEA8F2BFC1D9F00D05527 /* PowerUpStatus.swift in Sources */,
 				8F9CDBCA2BF4160C00C3112C /* LoginScreen.swift in Sources */,
+				8FB948B32BFD516F00D3552D /* RequisitionsViewModel.swift in Sources */,
 				8F8DEA842BFBF44200D05527 /* AddPowerUpModel.swift in Sources */,
 				8FB948952BFCF26600D3552D /* RegisterViewModel.swift in Sources */,
 				8FD563B52BF685BF00EDD761 /* MentorshipHomeScreen.swift in Sources */,
