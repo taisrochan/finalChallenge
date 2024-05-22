@@ -40,7 +40,7 @@ struct ProfileScreen: View {
                             Image(uiImage: selectedImage)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 150, height: 100)
+                                .frame(width: 150, height: 150)
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
                                 .shadow(radius: 10)
@@ -67,7 +67,7 @@ struct ProfileScreen: View {
                             }
                         } else {
                             Circle()
-                                .fill(Color.ioasysOrange)
+                                .fill(.black)
                                 .frame(width: 150, height: 150)
                                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
                                 .shadow(radius: 10)
@@ -155,7 +155,7 @@ struct ProfileScreen: View {
             $0.mentee.id == myUserId && $0.status == MentoringStatus.accepted.rawValue
         })?.mentor
         let myMentorName = getFirstTwoNames(from: myMentor?.name ?? "")
-        mentor = myMentorName
+         mentor = myMentorName
     }
 }
 

@@ -28,8 +28,12 @@ struct MenteesListView: View {
                             .multilineTextAlignment(.center)
                     } else {
                         List(viewModel.mentees, id: \.self) { mentee in
-                            Text(getFirstTwoNames(from: mentee.name))
-                                .font(.subheadline)
+                            VStack {
+                                Text(getFirstTwoNames(from: mentee.name))
+                                    .font(.headline)
+                                Text(getFirstTwoNames(from: mentee.email))
+                                    .font(.subheadline)
+                            }
                         }
                     }
                 }

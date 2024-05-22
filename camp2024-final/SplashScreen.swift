@@ -8,7 +8,7 @@ import SwiftUI
 
 struct SplashScreenView: View {
     @State private var displayedText = ""
-    let text = "ioasys"
+    let text = "compart"
     @State private var shouldNavigateToLogin = false
     @EnvironmentObject private var appRootManager: AppRootManager
     

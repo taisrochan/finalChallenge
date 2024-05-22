@@ -23,7 +23,6 @@
 		8F9CDBCA2BF4160C00C3112C /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9CDBC92BF4160C00C3112C /* LoginScreen.swift */; };
 		8F9CDBCD2BF57EB900C3112C /* PowerUpListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9CDBCC2BF57EB900C3112C /* PowerUpListScreen.swift */; };
 		8F9CDBCF2BF5A23900C3112C /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9CDBCE2BF5A23900C3112C /* TabBarView.swift */; };
-		8F9FE1D52BFA558500399DF1 /* PowerUpDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9FE1D42BFA558500399DF1 /* PowerUpDetail.swift */; };
 		8FB9488F2BFCD39400D3552D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB9488E2BFCD39400D3552D /* User.swift */; };
 		8FB948912BFCD5F100D3552D /* Destinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948902BFCD5F100D3552D /* Destinations.swift */; };
 		8FB948932BFCDF6900D3552D /* CompanyAreas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948922BFCDF6900D3552D /* CompanyAreas.swift */; };
@@ -70,7 +69,6 @@
 		8F9CDBC92BF4160C00C3112C /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		8F9CDBCC2BF57EB900C3112C /* PowerUpListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpListScreen.swift; sourceTree = "<group>"; };
 		8F9CDBCE2BF5A23900C3112C /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
-		8F9FE1D42BFA558500399DF1 /* PowerUpDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpDetail.swift; sourceTree = "<group>"; };
 		8FB9488E2BFCD39400D3552D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8FB948902BFCD5F100D3552D /* Destinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destinations.swift; sourceTree = "<group>"; };
 		8FB948922BFCDF6900D3552D /* CompanyAreas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyAreas.swift; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				8F9CDBBC2BF40DE300C3112C /* AddPowerUp */,
-				8F9CDBBD2BF40DF800C3112C /* PowerUpDetail */,
 				8F8DEA862BFC1B9400D05527 /* PowerUpList */,
 			);
 			path = PowerUp;
@@ -271,15 +268,6 @@
 				8F8DEA802BFBE68300D05527 /* AddPowerUpService.swift */,
 			);
 			path = AddPowerUp;
-			sourceTree = "<group>";
-		};
-		8F9CDBBD2BF40DF800C3112C /* PowerUpDetail */ = {
-			isa = PBXGroup;
-			children = (
-				8F9FE1D42BFA558500399DF1 /* PowerUpDetail.swift */,
-			);
-			name = PowerUpDetail;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		8F9CDBBE2BF40E1500C3112C /* Mentorship  */ = {
@@ -483,7 +471,6 @@
 				8F8DEA842BFBF44200D05527 /* AddPowerUpModel.swift in Sources */,
 				8FB948952BFCF26600D3552D /* RegisterViewModel.swift in Sources */,
 				8FD563B52BF685BF00EDD761 /* MentorshipHomeScreen.swift in Sources */,
-				8F9FE1D52BFA558500399DF1 /* PowerUpDetail.swift in Sources */,
 				8F8DEA882BFC1BE800D05527 /* PowerUpListViewModel.swift in Sources */,
 				8FB948AB2BFD1CE500D3552D /* MentorRequisitionViewModel.swift in Sources */,
 				8FB9489D2BFCFB6B00D3552D /* AppRootManager.swift in Sources */,
