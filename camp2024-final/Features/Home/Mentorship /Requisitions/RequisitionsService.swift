@@ -14,7 +14,10 @@ class RequisitionsService {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             DispatchQueue.main.async {
                 let mentorings = self.userDefaults.getAllMentorings()
-                let filteresMentorings = mentorings.filter({ $0.mentor.id == userId })
+                let filteresMentorings = mentorings.filter({
+                    $0.mentor.id == userId ||
+                    $0.mentee.id == userId
+                })
                 completion(.success(filteresMentorings))
             }
         }

@@ -42,6 +42,8 @@
 		8FB948B32BFD516F00D3552D /* RequisitionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948B22BFD516F00D3552D /* RequisitionsViewModel.swift */; };
 		8FB948B52BFD51F800D3552D /* RequisitionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948B42BFD51F800D3552D /* RequisitionsService.swift */; };
 		8FB948B82BFD565000D3552D /* RequisitionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948B72BFD565000D3552D /* RequisitionRowView.swift */; };
+		8FB948BA2BFD683800D3552D /* MenteesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948B92BFD683800D3552D /* MenteesListViewModel.swift */; };
+		8FB948BC2BFD685B00D3552D /* MenteesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB948BB2BFD685B00D3552D /* MenteesListService.swift */; };
 		8FC75FF22BF6ABEA00163E8C /* MentorRequisitionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC75FF12BF6ABEA00163E8C /* MentorRequisitionScreen.swift */; };
 		8FC75FF42BF6BCAE00163E8C /* RequisitionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC75FF32BF6BCAE00163E8C /* RequisitionsScreen.swift */; };
 		8FD563B52BF685BF00EDD761 /* MentorshipHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD563B42BF685BF00EDD761 /* MentorshipHomeScreen.swift */; };
@@ -87,6 +89,8 @@
 		8FB948B22BFD516F00D3552D /* RequisitionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequisitionsViewModel.swift; sourceTree = "<group>"; };
 		8FB948B42BFD51F800D3552D /* RequisitionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequisitionsService.swift; sourceTree = "<group>"; };
 		8FB948B72BFD565000D3552D /* RequisitionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequisitionRowView.swift; sourceTree = "<group>"; };
+		8FB948B92BFD683800D3552D /* MenteesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenteesListViewModel.swift; sourceTree = "<group>"; };
+		8FB948BB2BFD685B00D3552D /* MenteesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenteesListService.swift; sourceTree = "<group>"; };
 		8FC75FF12BF6ABEA00163E8C /* MentorRequisitionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorRequisitionScreen.swift; sourceTree = "<group>"; };
 		8FC75FF32BF6BCAE00163E8C /* RequisitionsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequisitionsScreen.swift; sourceTree = "<group>"; };
 		8FD563B42BF685BF00EDD761 /* MentorshipHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorshipHomeScreen.swift; sourceTree = "<group>"; };
@@ -332,6 +336,8 @@
 			isa = PBXGroup;
 			children = (
 				8FDCA5CB2BF6D0AE003EC149 /* MenteesScreen.swift */,
+				8FB948B92BFD683800D3552D /* MenteesListViewModel.swift */,
+				8FB948BB2BFD685B00D3552D /* MenteesListService.swift */,
 			);
 			path = MenteesList;
 			sourceTree = "<group>";
@@ -447,6 +453,7 @@
 				8FB948932BFCDF6900D3552D /* CompanyAreas.swift in Sources */,
 				8FB948A02BFD084800D3552D /* UserSessionManager.swift in Sources */,
 				8F9CDBCF2BF5A23900C3112C /* TabBarView.swift in Sources */,
+				8FB948BA2BFD683800D3552D /* MenteesListViewModel.swift in Sources */,
 				8FDCA5CC2BF6D0AE003EC149 /* MenteesScreen.swift in Sources */,
 				8F9CDBCD2BF57EB900C3112C /* PowerUpListScreen.swift in Sources */,
 				8F8DEA7F2BFBE64D00D05527 /* AddPowerUpViewModel .swift in Sources */,
@@ -472,6 +479,7 @@
 				8F8DEA8F2BFC1D9F00D05527 /* PowerUpStatus.swift in Sources */,
 				8F9CDBCA2BF4160C00C3112C /* LoginScreen.swift in Sources */,
 				8FB948B32BFD516F00D3552D /* RequisitionsViewModel.swift in Sources */,
+				8FB948BC2BFD685B00D3552D /* MenteesListService.swift in Sources */,
 				8F8DEA842BFBF44200D05527 /* AddPowerUpModel.swift in Sources */,
 				8FB948952BFCF26600D3552D /* RegisterViewModel.swift in Sources */,
 				8FD563B52BF685BF00EDD761 /* MentorshipHomeScreen.swift in Sources */,

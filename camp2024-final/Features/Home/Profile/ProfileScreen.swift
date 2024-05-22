@@ -82,14 +82,19 @@ struct ProfileScreen: View {
                     VStack(alignment: .leading, spacing: 10) {
                         TextField("Nome", text: $name)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .disabled(true)
                         TextField("Email", text: $email)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .disabled(true)
                         TextField("Área", text: $area)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .disabled(true)
                         TextField("Superpoder", text: $superpower)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .disabled(true)
                         TextField("Mentor", text: $mentor)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .disabled(true)
                     }
                     .padding(.horizontal, 20)
                     
@@ -133,11 +138,24 @@ struct ProfileScreen: View {
         .sheet(isPresented: $isImagePickerPresented) {
             ImagePicker(selectedImage: $selectedImage, isImagePickerPresented: $isImagePickerPresented)
         }
+        .onAppear() {
+            loadMentor()
+        }
     }
     
     func deleteImage() {
         selectedImage = nil
         isDeletingImage = false
+    }
+    
+    func loadMentor() {
+        let myUserId = UserSessionManager.shared.userId
+        let mentorings = MentorsRequestManager.shared.getAllMentorings()
+        let myMentor = mentorings.first(where: {
+            $0.mentee.id == myUserId && $0.status == MentoringStatus.accepted.rawValue
+        })?.mentor
+        let myMentorName = getFirstTwoNames(from: myMentor?.name ?? "")
+        mentor = myMentorName
     }
 }
 

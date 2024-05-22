@@ -6,53 +6,55 @@
 //
 
 import SwiftUI
-
-struct MenteesScreen: View {
-    // Lista de contatos
-    let contacts = [
-        Contact(name: "Tais Rocha Nogueira", email: "trochanogueira@ioasys.com"),
-        Contact(name: "João Silva", email: "joaosilva@example.com"),
-        Contact(name: "Maria Oliveira", email: "mariaoliveira@example.com"),
-        Contact(name: "Carlos Pereira", email: "carlospereira@example.com"),
-        Contact(name: "Ana Souza", email: "anasouza@example.com"),
-
-    ]
-
+struct MenteesListView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject var viewModel: MenteesListViewModel
+    
     var body: some View {
         NavigationView {
-            List(contacts) { contact in
-                VStack(alignment: .leading) {
-                    Text(contact.name)
-                        .font(.headline)
-                    Text(contact.email)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                }
-                .padding(.vertical, 4)
-            }
-            .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .topBarLeading) {
-                                VStack {
-                                    Text("Lista de Mentorados")
-                                        .font(.title)
-                                        .bold()
-                                }
-                            }
+            ZStack {
+                if viewModel.isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .scaleEffect(1.5, anchor: .center)
+                } else {
+                    
+                    if viewModel.mentees.isEmpty {
+                        Text("Você não tem nenhum mentorado")
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .multilineTextAlignment(.center)
+                    } else {
+                        List(viewModel.mentees, id: \.self) { mentee in
+                            Text(getFirstTwoNames(from: mentee.name))
+                                .font(.subheadline)
                         }
                     }
                 }
             }
-
-struct Contact: Identifiable {
-    let id = UUID()
-    let name: String
-    let email: String
+            .alert(isPresented: $viewModel.showAlert) {
+                return Alert(
+                    title: Text("Oops..."),
+                    message: Text("Não foi possível carregar as solicitações. Tente novamente mais tarde."),
+                    dismissButton: .default(Text("Ok")) {
+                        presentationMode.wrappedValue.dismiss()
+                    })
+            }
+            .onAppear {
+                viewModel.loadMentees()
+            }
+        }.navigationBarTitle("Meus mentorados", displayMode: .inline)
+    }
+    
+    
 }
+
 
 struct MenteeScren_Previews: PreviewProvider {
     static var previews: some View {
-        MenteesScreen()
+        MenteesListView(viewModel: MenteesListViewModel())
     }
 }
 

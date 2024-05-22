@@ -56,7 +56,7 @@ struct MentorshipHomeScreen: View {
                     
                     Divider()
                     
-                    NavigationLink(destination: MenteesScreen()) {
+                    NavigationLink(destination: MenteesListView(viewModel: MenteesListViewModel())) {
                         Text("Lista de Mentorados")
                             .foregroundColor(.black)
                             .padding(.vertical, 10)

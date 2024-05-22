@@ -24,18 +24,40 @@ struct RequisitionRowView: View {
         return getFirstTwoNames(from: request.mentee.name)
     }
     
+    private var mentorName: String {
+        return getFirstTwoNames(from: request.mentor.name)
+    }
+    
     private var statusInfo: (String, String, Color) {
+        let iAmTheMentor = request.mentor.id == UserSessionManager.shared.userId
         switch request.status {
+            
         case MentoringStatus.requested.rawValue:
-            return ("Nova solicitação", "\(menteeName) solicitou sua mentoria", .green)
+            let mentorText = "\(menteeName) solicitou sua mentoria"
+            let menteeText = "Você solicitou uma mentoria para \(mentorName)"
+            let text = iAmTheMentor ? mentorText : menteeText
+            return ("Nova solicitação", text, .green)
+            
         case MentoringStatus.accepted.rawValue:
-            return ("Mentoria aceita", "Você aceitou monitorar \(menteeName)", .blue)
+            let mentorText = "Você aceitou mentorar \(menteeName)"
+            let menteeText = "\(mentorName) aceitou ser seu mentor"
+            let text = iAmTheMentor ? mentorText : menteeText
+            return ("Mentoria aceita", text, .blue)
+            
         case MentoringStatus.rejected.rawValue:
-            return ("Mentoria rejeitada", "Você rejeitou o pedido de \(menteeName)", .red)
+            let mentorText = "Você rejeitou o pedido de \(menteeName)"
+            let menteeText = "\(mentorName) rejeitou ser seu mentor"
+            let text = iAmTheMentor ? mentorText : menteeText
+            return ("Mentoria rejeitada", text, .red)
+            
         case MentoringStatus.finished.rawValue:
             return ("Mentoria finalizada", "Essa monitoria foi encerrada", .gray)
+            
         case MentoringStatus.alreadyAnswered.rawValue:
-            return ("Solicitação", "\(menteeName) solicitou sua mentoria", .gray)
+            let mentorText = "\(menteeName) solicitou sua mentoria"
+            let menteeText = "Você solicitou uma mentoria para \(mentorName)"
+            let text = iAmTheMentor ? mentorText : menteeText
+            return ("Solicitação", text, .gray)
         default:
             return ("", "", .clear)
         }
