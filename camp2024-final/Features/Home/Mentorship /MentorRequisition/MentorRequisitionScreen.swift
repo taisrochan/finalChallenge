@@ -69,7 +69,6 @@ struct MentorRequisitionScreen: View {
             }
             
             if viewModel.isLoading {
-                // Overlay de carregamento
                 Color.black.opacity(0.4)
                     .edgesIgnoringSafeArea(.all)
                 ProgressView()

@@ -9,9 +9,9 @@ import SwiftUI
 
 func convertCodeToUserId(code: String) -> Int {
     switch code.uppercased() {
-    case "B5P7TR": return 20 //usei pra teste01
-    case "H2L9YC": return 21 //usei para teste02
-    case "F8T6QD": return 22
+    case "B5P7TR": return 20
+    case "H2L9YC": return 21
+    case "F8T6QD": return 22 
     case "K4N3ZM": return 23
     case "W1B9JV": return 24
     case "R2M7GH": return 25
